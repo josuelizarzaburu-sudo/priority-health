@@ -926,8 +926,8 @@ async function submitForm(e) {
     lastName: textInputs[1]?.value || '',
     email: form.querySelector('input[type="email"]')?.value || '',
     phone: form.querySelector('input[type="tel"]')?.value || '',
-    source: 'landing_page',
-    notes: 'Lead desde Landing Page Priority Health - SALUDSA Vitality'
+    source: 'WEB',
+    insuranceType: 'SALUD'
   };
   try {
     await fetch('https://priority-crm-production.up.railway.app/api/v1/leads', {
