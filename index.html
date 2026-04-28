@@ -917,9 +917,26 @@
 </footer>
 
 <script>
-function submitForm(e) {
+async function submitForm(e) {
   e.preventDefault();
-  document.getElementById('lead-form').style.display = 'none';
+  const form = document.getElementById('lead-form');
+  const textInputs = form.querySelectorAll('input[type="text"]');
+  const payload = {
+    firstName: textInputs[0]?.value || '',
+    lastName: textInputs[1]?.value || '',
+    email: form.querySelector('input[type="email"]')?.value || '',
+    phone: form.querySelector('input[type="tel"]')?.value || '',
+    source: 'landing_page',
+    notes: 'Lead desde Landing Page Priority Health - SALUDSA Vitality'
+  };
+  try {
+    await fetch('https://priority-crm-production.up.railway.app/api/v1/leads', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+  } catch (_) {}
+  form.style.display = 'none';
   document.getElementById('form-title').style.display = 'none';
   document.getElementById('form-sub').style.display = 'none';
   document.getElementById('success-msg').classList.add('show');
