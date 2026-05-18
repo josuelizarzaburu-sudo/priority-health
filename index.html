@@ -253,6 +253,46 @@ html,body{min-height:100%;font-family:'Outfit',sans-serif;background:var(--white
   .sv-card{padding:28px 20px}
   .frow{grid-template-columns:1fr}
 }
+
+/* ── NUCLEAR CONTRAST FIX ── */
+
+/* Niveles section on dark themes - use lighter bg */
+.ta .nvsec{background:#0f2d1a}
+.tc .nvsec{background:#1a1005}
+.td .nvsec{background:#120b28}
+
+/* ALL text in dark nvsec - force white */
+.ta .nvsec *,.tc .nvsec *,.td .nvsec *{color:white !important}
+
+/* Exception: keep gold/color for percentages and medals */
+.ta .nvlp[style],.tc .nvlp[style],.td .nvlp[style]{color:inherit !important}
+.ta .neyt,.tc .neyt,.td .neyt{color:var(--gold) !important}
+
+/* Boxes in niveles - make borders and backgrounds more visible */
+.ta .nvhi,.tc .nvhi,.td .nvhi{background:rgba(255,255,255,.1) !important;border-color:rgba(255,255,255,.25) !important}
+.ta .nvl,.tc .nvl,.td .nvl{background:rgba(255,255,255,.08) !important;border-color:rgba(255,255,255,.2) !important}
+.ta .pvbox,.tc .pvbox,.td .pvbox{background:rgba(255,255,255,.08) !important;border-color:rgba(255,255,255,.25) !important}
+.ta .pvi,.tc .pvi,.td .pvi{background:rgba(255,255,255,.1) !important;border-color:rgba(255,255,255,.2) !important}
+.ta .nvexp,.tc .nvexp,.td .nvexp{background:rgba(201,169,110,.2) !important;border-color:rgba(201,169,110,.5) !important}
+.ta .nvnote,.tc .nvnote,.td .nvnote{background:rgba(201,169,110,.15) !important;border-color:rgba(201,169,110,.4) !important}
+
+/* Watch section - force white text */
+.ta .wsec *,.tc .wsec *,.td .wsec *{color:white !important}
+.ta .wsec .ws,.tc .wsec .ws,.td .wsec .ws{background:rgba(255,255,255,.1) !important;border-color:rgba(255,255,255,.25) !important}
+.ta .wsec .whl,.tc .wsec .whl,.td .wsec .whl{background:rgba(201,169,110,.2) !important;border-color:rgba(201,169,110,.5) !important}
+.ta .wsec .wtag,.tc .wsec .wtag{color:#86efac !important}
+.td .wsec .wtag{color:#d8b4fe !important}
+.wt em{color:var(--gold) !important}
+
+/* CTA section */
+.ta .cta *,.tc .cta *,.td .cta *{color:white !important}
+.ta .bcta,.tc .bcta,.td .bcta{border-color:rgba(255,255,255,.5) !important}
+
+/* Font size boost for all small text in dark sections */
+.nvhd,.nvld,.nvll,.pvs,.pvd,.wsd,.whl,.nvnote,.nvexp{font-size:15px !important;line-height:1.65 !important}
+.nvht,.wst,.pvt{font-size:17px !important;font-weight:600 !important}
+.nvt{font-size:clamp(26px,3vw,42px) !important}
+
 </style>
 </head>
 <body>
