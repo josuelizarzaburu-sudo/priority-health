@@ -674,14 +674,14 @@ html,body{min-height:100%;font-family:'Outfit',sans-serif;background:var(--white
 </div>
 
 <script>
-let sp=null,ins=null
+let sp=null,ins=null,sport=null,insured=null
 function pick(el,t,v){el.closest('.sv-opts').querySelectorAll('.sv-opt').forEach(o=>o.classList.remove('sel'));el.classList.add('sel');if(t==='s'){sp=v;document.getElementById('b1').classList.add('on')}else{ins=v;document.getElementById('b2').classList.add('on')}}
 function step2(){document.getElementById('s1').classList.remove('active');document.getElementById('s2').classList.add('active');document.getElementById('d1').classList.remove('on');document.getElementById('d2').classList.add('on')}
-function result(){let t;if(ins==='y'&&sp==='y')t='page-a';else if(ins==='y'&&sp==='n')t='page-b';else if(ins==='n'&&sp==='y')t='page-c';else t='page-d';document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(t).classList.add('active');window.scrollTo(0,0)}
+function result(){sport=sp==='y';insured=ins==='y';let t;if(insured&&sport)t='page-a';else if(insured&&!sport)t='page-b';else if(!insured&&sport)t='page-c';else t='page-d';document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(t).classList.add('active');window.scrollTo(0,0)}
 function openF(){document.getElementById('fov').classList.add('open');document.body.style.overflow='hidden'}
 function closeF(){document.getElementById('fov').classList.remove('open');document.body.style.overflow='';document.getElementById('fc').style.display='block';document.getElementById('fok').classList.remove('show')}
 function clio(e){if(e.target===document.getElementById('fov'))closeF()}
-function subF(e){e.preventDefault();const i=e.target.querySelectorAll('input');fetch('https://priority-crm-production.up.railway.app/api/v1/leads',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({firstName:i[0].value,lastName:i[1].value,email:i[2].value,phone:i[3].value,source:'WEB',insuranceType:'SALUD'})}).catch(()=>{});document.getElementById('fc').style.display='none';document.getElementById('fok').classList.add('show')}
+function subF(e){e.preventDefault();const i=e.target.querySelectorAll('input');const pt=insured&&sport?'A':insured&&!sport?'B':!insured&&sport?'C':'D';const nt={A:'Deportista con seguro - pitch: premios por ejercicio',B:'Con seguro, no deportista - pitch: cobertura amplia y preventiva',C:'Deportista sin seguro - pitch: protección ante lesiones',D:'Sin seguro, no deportista - pitch: plan básico accesible'}[pt];fetch('https://priority-crm-production.up.railway.app/api/v1/leads',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({firstName:i[0].value,lastName:i[1].value,email:i[2].value,phone:i[3].value,source:'WEB',insuranceType:'SALUD',sport:sport,insured:insured,profileType:pt,notes:nt})}).catch(()=>{});document.getElementById('fc').style.display='none';document.getElementById('fok').classList.add('show')}
 </script>
 </body>
 </html>
