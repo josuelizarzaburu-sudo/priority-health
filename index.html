@@ -681,7 +681,7 @@ function result(){let t;if(ins==='y'&&sp==='y')t='page-a';else if(ins==='y'&&sp=
 function openF(){document.getElementById('fov').classList.add('open');document.body.style.overflow='hidden'}
 function closeF(){document.getElementById('fov').classList.remove('open');document.body.style.overflow='';document.getElementById('fc').style.display='block';document.getElementById('fok').classList.remove('show')}
 function clio(e){if(e.target===document.getElementById('fov'))closeF()}
-function subF(e){e.preventDefault();const i=e.target.querySelectorAll('input');fetch('https://priority-crm-production.up.railway.app/api/v1/leads',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({firstName:i[0].value,lastName:i[1].value,email:i[2].value,phone:i[3].value,source:'WEB',insuranceType:'SALUD'})}).catch(()=>{});document.getElementById('fc').style.display='none';document.getElementById('fok').classList.add('show')}
+function subF(e){e.preventDefault();const i=e.target.querySelectorAll('input');let pt;if(ins==='y'&&sp==='y')pt='A';else if(ins==='y'&&sp==='n')pt='B';else if(ins==='n'&&sp==='y')pt='C';else pt='D';fetch('https://priority-crm-production.up.railway.app/api/v1/leads',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({firstName:i[0].value,lastName:i[1].value,email:i[2].value,phone:i[3].value,source:'WEB',insuranceType:'SALUD',sport:sp==='y',insured:ins==='y',profileType:pt})}).catch(()=>{});document.getElementById('fc').style.display='none';document.getElementById('fok').classList.add('show')}
 </script>
 </body>
 </html>
